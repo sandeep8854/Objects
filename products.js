@@ -101,7 +101,7 @@ function quantityOrderMoreThan1(product) {
   return itemsWQutiGreTh1;
 }
 
-console.log(quantityOrderMoreThan1(product));
+//console.log(quantityOrderMoreThan1(product));
 
 /*
 [
@@ -113,3 +113,31 @@ console.log(quantityOrderMoreThan1(product));
 */
 
 //===========================================================================================
+
+//Q.3 Get all items which are mentioned as fragile.
+
+function typeFragile(product) {
+  const fragileItems = Object.keys(product[0]).reduce((acc, category) => {
+    const item = product[0][category];
+    if (Array.isArray(item)) {
+      item.map((subItem, index) => {
+        // console.log(subItem);
+        const subItemKey = Object.keys(subItem)[0];
+        // console.log(subItemKey);
+        const subItemValue = subItem[subItemKey];
+        //  console.log(subItemValue);
+        if (subItemValue.type && subItemValue.type === "fragile") {
+          acc.push({ [subItemKey]: subItemValue });
+        }
+      });
+    } else {
+      if (item.type && item.type === "fragile") {
+        acc.push({ [category]: item });
+      }
+    }
+
+    return acc;
+  }, []);
+  return fragileItems;
+}
+console.log(typeFragile(product));
