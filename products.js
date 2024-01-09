@@ -62,7 +62,7 @@ function findEniqu(product) {
   }, []);
   return expensiveItems;
 }
-console.log(findEniqu(product));
+//console.log(findEniqu(product));
 
 /*
 Output:- 
@@ -72,3 +72,44 @@ Output:-
   { watch: { price: '$800', quantity: 1, type: 'fragile' } }
 ]
 */
+//================================================================================
+// Q2. Find all the items where quantity ordered is more than 1.
+
+function quantityOrderMoreThan1(product) {
+  const itemsWQutiGreTh1 = Object.keys(product[0]).reduce((acc, category) => {
+    const item = product[0][category];
+    // console.log(item);
+    if (Array.isArray(item)) {
+      item.map((subItem, index) => {
+        // console.log(subItem);
+        const subItemKey = Object.keys(subItem)[0];
+        //  console.log(subItemKey);
+        const subItemValue = subItem[subItemKey];
+        // console.log(subItemValue); // that is Object.
+        if (subItemValue.quantity && subItemValue.quantity > 1) {
+          acc.push({ [subItemKey]: subItemValue });
+        }
+      });
+    } else {
+      if (item.quantity && item.quantity > 1) {
+        acc.push({ [category]: item });
+      }
+    }
+
+    return acc;
+  }, []);
+  return itemsWQutiGreTh1;
+}
+
+console.log(quantityOrderMoreThan1(product));
+
+/*
+[
+  { shampoo: { price: '$50', quantity: 4 } },
+  { HairOil: { price: '$40', quantity: 2, sealed: true } },
+  { spoons: { quantity: 2, price: '$8' } },
+  { cooker: { quantity: 4, price: '$900' } }
+]
+*/
+
+//===========================================================================================
