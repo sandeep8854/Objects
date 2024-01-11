@@ -66,6 +66,35 @@ function playingVideoGame(users) {
 */
 //=============================================================================
 // Q2 Find all users staying in Germany.
+
+function funStayingGermany(users) {
+  const usersInGermany = Object.entries(users);
+  const filterData = usersInGermany.filter(([userName, userDetails]) => {
+    return userDetails.nationality === "Germany";
+  });
+
+  const actualFilterData = filterData.reduce((acc, [userName, userDetails]) => {
+    acc[userName] = userDetails;
+    return acc;
+  }, {});
+  console.log(actualFilterData);
+
+  //===========================================================
+  /*
+  const inGermany = Object.keys(users).reduce((acc, ele) => {
+    const userValue = users[ele];
+    //   console.log(userValue);
+    if (userValue.nationality && userValue.nationality === "Germany") {
+      acc.push(users[ele]);
+    }
+    return acc;
+  }, []);
+  return inGermany;
+  */
+  //================================================================
+}
+console.log(funStayingGermany(users));
+
 // Q3 Sort users based on their seniority level
 //  for Designation - Senior Developer > Developer > Intern
 //  for Age - 20 > 10
