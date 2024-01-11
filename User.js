@@ -109,6 +109,7 @@ function sortFunSeniorityLevel(users) {
   //console.log(entriesObject);
   const sortedUser = entriesObject.sort(([_, user1], [__, user2]) => {
     //  console.log(seniorityOrder[user1.desgination]);
+    console.log(seniorityOrder[user1.desgination]); // seniortyOrder orders of object and based on user value and print the desination of seniortyOrder keys of value.
     if (seniorityOrder[user1.desgination] > seniorityOrder[user2.desgination]) {
       return -1;
     } else if (
@@ -125,7 +126,7 @@ function sortFunSeniorityLevel(users) {
   }, {});
   return actualFormatData;
 }
-//console.log(sortFunSeniorityLevel(users));
+// console.log(sortFunSeniorityLevel(users));
 
 /*
 {
@@ -209,3 +210,78 @@ function findMasterDegreeFunc(users) {
 */
 
 // Q5 Group users based on their Programming language mentioned in their designation.
+
+function groupBasedOnProgramming(users) {
+  const objectValue = Object.values(users);
+  // console.log(objectValue);
+  let language = ["Golang", "Javascript", "Python"];
+  const makingGroup = objectValue.reduce((acc, ele, index) => {
+    // console.log(ele);
+    const programmingLanguage = ele.desgination;
+    //  console.log(typeof programmingLanguage);
+    if (programmingLanguage.includes("Golang")) {
+      ele.newLanguage = "Golang";
+    } else if (programmingLanguage.includes("Javascript")) {
+      ele.newLanguage = "Javascript";
+    } else if (programmingLanguage.includes("Python")) {
+      ele.newLanguage = "Python";
+    }
+
+    if (!acc[ele.newLanguage]) {
+      acc[ele.newLanguage] = [];
+      // console.log(acc[splitMethod]);
+    }
+    acc[ele.newLanguage].push(ele);
+    delete ele.newLanguage;
+    return acc;
+  }, {});
+  return makingGroup;
+}
+// console.log(groupBasedOnProgramming(users));
+
+/*
+{
+  Golang: [
+    {
+      age: 24,
+      desgination: 'Senior Golang Developer',
+      interests: [Array],
+      qualification: 'Masters',
+      nationality: 'Greenland'
+    },
+    {
+      age: 19,
+      desgination: 'Intern - Golang',
+      interests: [Array],
+      qualification: 'Bachelor',
+      nationality: 'UK'
+    }
+  ],
+  Javascript: [
+    {
+      age: 24,
+      desgination: 'Intern - Javascript',
+      interests: [Array],
+      qualification: 'Bachaelor',
+      nationality: 'Germany'
+    },
+    {
+      age: 34,
+      desgination: 'Senior Javascript Developer',
+      interest: [Array],
+      qualification: 'Masters',
+      nationality: 'USA'
+    }
+  ],
+  Python: [
+    {
+      age: 23,
+      desgination: 'Python Developer',
+      interests: [Array],
+      qualification: "Bachaelor's Degree",
+      nationality: 'Germany'
+    }
+  ]
+}
+
+*/
