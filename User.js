@@ -229,7 +229,6 @@ function groupBasedOnProgramming(users) {
 
     if (!acc[ele.newLanguage]) {
       acc[ele.newLanguage] = [];
-      // console.log(acc[splitMethod]);
     }
     acc[ele.newLanguage].push(ele);
     delete ele.newLanguage;
