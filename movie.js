@@ -203,5 +203,42 @@ function actorLeonardoDicaprio(favouritesMovies) {
 //    Q.4 Sort movies (based on IMDB rating)
 //        if IMDB ratings are same, compare totalEarning as the secondary metric.
 
+function basedOnIMDBOrTotalEarning(favouritesMovies) {
+  const entriesArray = Object.entries(favouritesMovies);
+  //  console.log(entriesArray); // first keys and value become the inside the array.
+  const resultSort = entriesArray.sort(([, aMovie], [, bMovie]) => {
+    //  console.log(aMovie); // except 1st element he give all element only value because key as taking as empty.
+    //  console.log(bMovie); // except last element he give remainig element.and comma taking
+    // which one i don't want. and only value will be printed.
+    if (aMovie.imdbRating !== bMovie.imdbRating) {
+      //   return aMovie.imdbRating - bMovie.imdbRating;  // both the same things.
+      if (aMovie.imdbRating < bMovie.imdbRating) {
+        return -1;
+      } else if (aMovie.imdbRating > bMovie.imdbRating) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+
+    // if imdbRating are same compare with total earning.
+
+    const earningA = Number(aMovie.totalEarnings.replace(/\D/g, ""));
+    //   console.log(earningA); //
+    const earningB = Number(bMovie.totalEarnings.replace(/\D/g, ""));
+    //  console.log(earningB);
+    if (earningA < earningB) {
+      return -1;
+    } else if (earningA > earningB) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  // console.log(resultSort); // sort as a asending order.
+  return Object.fromEntries(resultSort);
+}
+// console.log(basedOnIMDBOrTotalEarning(favouritesMovies));
+
 ///     Q.5 Group movies based on genre. Priority of genres in case of multiple genres present are:
 //    drama > sci-fi > adventure > thriller > crime
