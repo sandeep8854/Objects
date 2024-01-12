@@ -165,7 +165,43 @@ function oscarAnd500MFunc(favouritesMovies) {
 */
 
 //    Q.3 Find all movies of the actor "Leonardo Dicaprio".
+
+function actorLeonardoDicaprio(favouritesMovies) {
+  const makeAnArray = Object.entries(favouritesMovies); // from keys and value become in an array
+  // console.log(makeAnArray); // key value become the inside the array.
+
+  const actorLeonardo = makeAnArray.reduce((acc, [movie, details]) => {
+    // console.log(movie); // keys
+    // console.log(details); // value
+    if (details.actors.indexOf("Leonardo Dicaprio") > -1) {
+      acc[movie] = details;
+    }
+    return acc;
+  }, {});
+  return actorLeonardo;
+}
+// console.log(actorLeonardoDicaprio(favouritesMovies));
+
+/*
+{
+  Inception: {
+    imdbRating: 8.3,
+    actors: [ 'Tom Hardy', 'Leonardo Dicaprio' ],
+    oscarNominations: 12,
+    genre: [ 'sci-fi', 'adventure' ],
+    totalEarnings: '$870M'
+  },
+  Titanic: {
+    imdbRating: 8.3,
+    actors: [ 'Leonardo Dicaprio', 'Kate Winslet' ],
+    oscarNominations: 13,
+    genre: [ 'drama' ],
+    totalEarnings: '$800M'
+  }
+}
+*/
 //    Q.4 Sort movies (based on IMDB rating)
 //        if IMDB ratings are same, compare totalEarning as the secondary metric.
+
 ///     Q.5 Group movies based on genre. Priority of genres in case of multiple genres present are:
 //    drama > sci-fi > adventure > thriller > crime
