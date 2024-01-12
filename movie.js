@@ -48,6 +48,9 @@ const favouritesMovies = {
 //   Q1. Find all the movies with total earnings more than $500M.
 
 function totalEarningFunc(favouritesMovies) {
+  // Step - 1
+  //-------------------------------------------------------------------------
+  /*
   const keyElement = Object.keys(favouritesMovies).reduce((acc, ele) => {
     // console.log(favouritesMovies[ele]); // value.
     //   console.log(ele); // keys.
@@ -65,8 +68,23 @@ function totalEarningFunc(favouritesMovies) {
     return acc;
   }, {});
   return keyElement;
+*/
+  //--------------------------------------------------------------------------------
+  // Method 2-
+  const makeAnArray = Object.entries(favouritesMovies); // from keys and value become in an array
+  // console.log(makeAnArray);
+  //  let str = "$500M";
+  //  console.log(Number(str.replace(/\D/g, ""))); // 500
+
+  const movieMoreThen500 = makeAnArray.reduce((acc, [movie, details]) => {
+    if (Number(details.totalEarnings.replace(/\D/g, "")) > 500) {
+      acc[movie] = details;
+    }
+    return acc;
+  }, {});
+  return movieMoreThen500;
 }
-//console.log(totalEarningFunc(favouritesMovies));
+console.log(totalEarningFunc(favouritesMovies));
 
 /*
 {
