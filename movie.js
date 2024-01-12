@@ -240,5 +240,46 @@ function basedOnIMDBOrTotalEarning(favouritesMovies) {
 }
 // console.log(basedOnIMDBOrTotalEarning(favouritesMovies));
 
+//---------------------------------------------------------------------------------
 ///     Q.5 Group movies based on genre. Priority of genres in case of multiple genres present are:
 //    drama > sci-fi > adventure > thriller > crime
+
+function basedOnGener(favouritesMovies) {
+  console.log(favouritesMovies);
+
+  const groupedByGenre = Object.entries(favouritesMovies).reduce(
+    (acc, [title, details]) => {
+      if (details.genre.includes("drama")) {
+        acc["drama"] = details;
+      } else if (details.genre.includes("sci-fi")) {
+        acc["sci-fi"] = details;
+      } else if (details.genre.includes("adventure")) {
+        acc["adventure"] = details;
+      } else if (details.genre.includes("thriller")) {
+        acc["thriller"] = details;
+      } else if (details.genre.includes("crime")) {
+        acc["crime"] = details;
+      }
+      return acc;
+    },
+    {}
+  );
+  console.log(groupedByGenre);
+  // console.log(groupedByGenre);
+
+  // console.log(currentValue);
+  //   if (currentValue[1].genre.includes("drama")) {
+  //     accumulator["drama"].push(currentValue[0]);
+  //   } else if (currentValue[1].genre.includes("sci-fi")) {
+  //     accumulator["sci-fi"].push(currentValue[0]);
+  //   } else if (currentValue[1].genre.includes("adventure")) {
+  //     accumulator["adventure"].push(currentValue[0]);
+  //   } else if (currentValue[1].genre.includes("thriller")) {
+  //     accumulator["thriller"].push(currentValue[0]);
+  //   } else if (currentValue[1].genre.includes("crime")) {
+  //     accumulator["crime"].push(currentValue[0]);
+  //   }
+  //   return accumulator;
+}
+
+console.log(basedOnGener(favouritesMovies));
