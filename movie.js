@@ -46,6 +46,61 @@ const favouritesMovies = {
 //  NOTE: For all questions, the returned data must contain all the movie information //including its name.
 
 //   Q1. Find all the movies with total earnings more than $500M.
+
+function totalEarningFunc(favouritesMovies) {
+  const keyElement = Object.keys(favouritesMovies).reduce((acc, ele) => {
+    // console.log(favouritesMovies[ele]); // value.
+    //   console.log(ele); // keys.
+    const numberEarning = favouritesMovies[ele].totalEarnings;
+    const withDolorAndM = Number(
+      numberEarning.slice(1, numberEarning.length - 1)
+    );
+
+    if (withDolorAndM && withDolorAndM > 500) {
+      if (!acc[ele]) {
+        acc[ele] = [];
+      }
+      acc[ele] = favouritesMovies[ele];
+    }
+    return acc;
+  }, {});
+  return keyElement;
+}
+//console.log(totalEarningFunc(favouritesMovies));
+
+/*
+{
+  Matrix: {
+    imdbRating: 8.3,
+    actors: [ 'Keanu Reeves', 'Carrie-Anniee' ],
+    oscarNominations: 2,
+    genre: [ 'sci-fi', 'adventure' ],
+    totalEarnings: '$680M'
+  },
+  Inception: {
+    imdbRating: 8.3,
+    actors: [ 'Tom Hardy', 'Leonardo Dicaprio' ],
+    oscarNominations: 12,
+    genre: [ 'sci-fi', 'adventure' ],
+    totalEarnings: '$870M'
+  },
+  'The Dark Knight': {
+    imdbRating: 8.9,
+    actors: [ 'Christian Bale', 'Heath Ledger' ],
+    oscarNominations: 12,
+    genre: [ 'thriller' ],
+    totalEarnings: '$744M'
+  },
+  Titanic: {
+    imdbRating: 8.3,
+    actors: [ 'Leonardo Dicaprio', 'Kate Winslet' ],
+    oscarNominations: 13,
+    genre: [ 'drama' ],
+    totalEarnings: '$800M'
+  }
+}
+*/
+
 //    Q2. Find all the movies who got more than 3 oscarNominations and also totalEarning are more than $500M.
 //    Q.3 Find all movies of the actor "Leonardo Dicaprio".
 //    Q.4 Sort movies (based on IMDB rating)
