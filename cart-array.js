@@ -178,5 +178,56 @@ function ascendingFunc(cardDetails) {
       return 0;
     }
   });
+  return sortedObj;
 }
-console.log(ascendingFunc(cardDetails));
+// console.log(ascendingFunc(cardDetails));
+
+//----------------------------------------------------------------------------------------
+// 7. Group the data in such a way that we can identify which cards were assigned in which months.
+// Till now best question in Bootcamp.
+function groupData(cardDetails) {
+  let monthsArray = [
+    {
+      January: 1,
+      February: 2,
+      March: 3,
+      April: 4,
+      May: 5,
+      June: 6,
+      July: 7,
+      August: 8,
+      September: 9,
+      October: 10,
+      November: 11,
+      December: 12,
+    },
+  ];
+  const monthArr = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  // console.log(monthArr);
+  const monthObject = monthsArray[0];
+  // console.log(monthObject.hasOwnProperty("July"));
+  const groupData = cardDetails.reduce((acc, curr, index) => {
+    const splitDate = Number(curr.issue_date.split("/")[0]);
+    //  console.log(splitDate);
+    if (!acc[monthArr[splitDate - 1]]) {
+      acc[monthArr[splitDate - 1]] = [];
+    }
+    acc[monthArr[splitDate - 1]].push(curr);
+    return acc;
+  }, {});
+  return groupData;
+}
+console.log(groupData(cardDetails));
