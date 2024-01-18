@@ -136,8 +136,23 @@ function attachRandomthreeDigit(cardDetails) {
   }, []);
   console.log(result);
 }
-console.log(attachRandomthreeDigit(cardDetails));
+// console.log(attachRandomthreeDigit(cardDetails));
 
 // 4. Add a new field to each card to indicate if the card is valid or not.
+
+function cardValidOrNotFunc(cardDetails) {
+  const result = cardDetails.reduce((acc, curr, index) => {
+    const cardValid = "Valid";
+    const newPrperties = { ...curr, cardValid };
+    acc.push(newPrperties);
+    return acc;
+  }, []);
+  console.log(result);
+}
+// console.log(cardValidOrNotFunc(cardDetails));
+
 // 5. Invalidate all cards issued before March.
+
+function beforeMarch(cardDetails) {}
+console.log(beforeMarch(cardDetails));
 // 6. Sort the data into ascending order of issue date.
