@@ -115,13 +115,29 @@ function issuedBeforeJune(cardDetails) {
       acc.push(curr);
     }
     return acc;
-    ``;
   }, []);
   console.log(res);
 }
-console.log(issuedBeforeJune(cardDetails));
+// console.log(issuedBeforeJune(cardDetails));
 
 //  3. Assign a new field to each card for CVV where the CVV is a random 3 digit number.
+
+function attachRandomthreeDigit(cardDetails) {
+  let startNumber = 100;
+  let endNumber = 999;
+  const result = cardDetails.reduce((acc, curr, index) => {
+    const CVV = Math.floor(
+      Math.random() * (endNumber - startNumber + 1) + startNumber
+    );
+    // important concept.
+    const generateNum = { ...curr, CVV };
+    acc.push(generateNum);
+    return acc;
+  }, []);
+  console.log(result);
+}
+console.log(attachRandomthreeDigit(cardDetails));
+
 // 4. Add a new field to each card to indicate if the card is valid or not.
 // 5. Invalidate all cards issued before March.
 // 6. Sort the data into ascending order of issue date.
