@@ -108,6 +108,19 @@ function cardNumber(cardDetails) {
 //------------------------------------------------------------------------------
 // 2. Find all cards that were issued before June.
 
+function issuedBeforeJune(cardDetails) {
+  const res = cardDetails.reduce((acc, curr, index) => {
+    const splitDate = curr.issue_date.split("/")[0] < 6;
+    if (splitDate) {
+      acc.push(curr);
+    }
+    return acc;
+    ``;
+  }, []);
+  console.log(res);
+}
+console.log(issuedBeforeJune(cardDetails));
+
 //  3. Assign a new field to each card for CVV where the CVV is a random 3 digit number.
 // 4. Add a new field to each card to indicate if the card is valid or not.
 // 5. Invalidate all cards issued before March.
