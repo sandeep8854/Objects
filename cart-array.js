@@ -119,7 +119,7 @@ function issuedBeforeJune(cardDetails) {
   console.log(res);
 }
 // console.log(issuedBeforeJune(cardDetails));
-
+//----------------------------------------------------------------------------------
 //  3. Assign a new field to each card for CVV where the CVV is a random 3 digit number.
 
 function attachRandomthreeDigit(cardDetails) {
@@ -137,7 +137,7 @@ function attachRandomthreeDigit(cardDetails) {
   console.log(result);
 }
 // console.log(attachRandomthreeDigit(cardDetails));
-
+//-------------------------------------------------------------------------------
 // 4. Add a new field to each card to indicate if the card is valid or not.
 
 function cardValidOrNotFunc(cardDetails) {
@@ -150,7 +150,7 @@ function cardValidOrNotFunc(cardDetails) {
   console.log(result);
 }
 // console.log(cardValidOrNotFunc(cardDetails));
-
+//-----------------------------------------------------------------------------------
 // 5. Invalidate all cards issued before March.
 
 function beforeMarch(cardDetails) {
@@ -163,5 +163,20 @@ function beforeMarch(cardDetails) {
   }, []);
   console.log(result);
 }
-console.log(beforeMarch(cardDetails));
+// console.log(beforeMarch(cardDetails));
+//--------------------------------------------------------------------------------
 // 6. Sort the data into ascending order of issue date.
+function ascendingFunc(cardDetails) {
+  const sortedObj = cardDetails.sort((a, b) => {
+    const first = Number(a.issue_date.split("/")[0]);
+    const second = Number(b.issue_date.split("/")[0]);
+    if (first < second) {
+      return -1;
+    } else if (first > second) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+}
+console.log(ascendingFunc(cardDetails));
