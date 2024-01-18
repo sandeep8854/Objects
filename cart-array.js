@@ -153,6 +153,15 @@ function cardValidOrNotFunc(cardDetails) {
 
 // 5. Invalidate all cards issued before March.
 
-function beforeMarch(cardDetails) {}
+function beforeMarch(cardDetails) {
+  const result = cardDetails.reduce((acc, curr, index) => {
+    const splitDate = curr.issue_date.split("/")[0] < 3;
+    if (splitDate) {
+      acc.push(curr);
+    }
+    return acc;
+  }, []);
+  console.log(result);
+}
 console.log(beforeMarch(cardDetails));
 // 6. Sort the data into ascending order of issue date.
